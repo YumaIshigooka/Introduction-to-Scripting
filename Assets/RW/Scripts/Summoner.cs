@@ -10,7 +10,7 @@ public class Summoner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cooldown = Random.Range(2.0f, 6.0f);
+        cooldown = Random.Range(4.0f, 8.0f);
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class Summoner : MonoBehaviour
         if (timer > cooldown) {
             if (Random.Range(0, 2) > 0.5f) Instantiate(sheep, transform.position, Quaternion.identity);
             timer = 0;
-            cooldown *= 0.95f;
+            cooldown *= 0.99f;
         }
     }
 }
