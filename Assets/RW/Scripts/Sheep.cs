@@ -12,7 +12,11 @@ public class Sheep : MonoBehaviour
     private bool slowdown = false;
     private int slowdownRate = 10;
     private AudioSource audioSource;
+    private MeshRenderer sheepRenderer;
     public AudioClip[] audioClips;
+
+
+    public Summoner sheepSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,23 @@ public class Sheep : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         translate = GetComponent<Translate>();
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void InitializeSheep(float currTime)
+    {
+        translate = GetComponent<Translate>();
+        sheepRenderer = GetComponentInChildren<MeshRenderer>();
+        int sheepType = Random.Range(Mathf.Clamp(100 - 25 *(int)Mathf.Log(currTime + 0.001f), 0, 100), 100);
+        if (sheepType < 5) {
+            translate.translateSpeed *= 3f;
+            sheepRenderer.material.SetColor("_Color", UnityEngine.Color.yellow);
+            GetComponentInChildren<ParticleSystem>().startColor = UnityEngine.Color.yellow;
+        }
+        else if (sheepType < 25 ) {
+            translate.translateSpeed *= 2f;
+            sheepRenderer.material.SetColor("_Color", UnityEngine.Color.red);
+            GetComponentInChildren<ParticleSystem>().enableEmission = false;
+        } else GetComponentInChildren<ParticleSystem>().enableEmission = false;
     }
 
     // Update is called once per frame
@@ -33,11 +54,17 @@ public class Sheep : MonoBehaviour
         }
     }
 
+    public void SetSpawner(Summoner spawner){
+        sheepSpawner = spawner;
+    }
+
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("DropSheep") && !isHit){
             rb.isKinematic = false;
             slowdown = true;
             Destroy(gameObject, dropDelay);
+            sheepSpawner.RemoveSheepFromList (gameObject);
+            GameState.Instance.DroppedSheep();
         }
         if (other.CompareTag("Hay") && !isHit){
             Destroy(other.gameObject);
@@ -45,6 +72,12 @@ public class Sheep : MonoBehaviour
             Destroy(gameObject, eatDelay);
             audioSource.pitch = Random.Range(1.0f, 1.5f);
             audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+            sheepSpawner.RemoveSheepFromList (gameObject);
+            GameState.Instance.SavedSheep();
+            if (sheepRenderer.material.color != UnityEngine.Color.yellow) {
+                sheepRenderer.material.SetColor("_Color", UnityEngine.Color.white);
+            }
+            
         }
     }
 }

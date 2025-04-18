@@ -108,8 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad46f93d67e8c2942bc2e2ac72a1de7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 80
-  friction: 10
+  acceleration: 200
+  friction: 50
   limitX: 22
   hayBaleCooldown: 0.5
   spawnPos: {fileID: 1855226493}
