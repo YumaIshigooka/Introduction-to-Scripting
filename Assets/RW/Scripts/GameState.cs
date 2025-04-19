@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameState : MonoBehaviour
 {
@@ -15,10 +16,24 @@ public class GameState : MonoBehaviour
 
     public int sheepDroppedBeforeGameOver; // 4
     public Summoner sheepSpawner;
+
+    public TextMeshProUGUI  sheepSavedText; // 2
+    public TextMeshProUGUI  sheepDroppedText; // 3
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
+    }
+
+    void Start()
+    {
+        sheepSaved = 0; 
+        sheepDropped = 0; 
+
+        sheepSavedText.text = "Saved: " + sheepSaved;
+        sheepDroppedText.text = "Dropped: " + sheepDropped; 
+
+        sheepSpawner.canSpawn = true; 
     }
 
     // Update is called once per frame
@@ -33,7 +48,7 @@ public class GameState : MonoBehaviour
     public void SavedSheep()
     {
         sheepSaved++;
-        Debug.Log("Sheep saved: " + sheepSaved); // 1
+        sheepSavedText.text = "Saved: " + sheepSaved; 
     }
 
     private void GameOver()
@@ -49,16 +64,23 @@ public class GameState : MonoBehaviour
         sheepSpawner.canSpawn = true;
         sheepSpawner.DestroyAllSheep();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+
+        sheepSaved = 0; 
+        sheepDropped = 0; 
+
+        sheepDroppedText.text = "Saved: " + sheepDropped; 
+        sheepDroppedText.text = "Dropped: " + sheepDropped; 
+
         Music.Instance.audioSource.Stop();
         Music.Instance.audioSource.Play();
     }
 
     public void DroppedSheep()
     {
-        sheepDropped++; // 1
-        Debug.Log("Sheep saved: " + sheepSaved);
+        sheepDropped++; 
+        sheepDroppedText.text = "Dropped: " + sheepDropped; 
 
-        if (sheepDropped == sheepDroppedBeforeGameOver) // 2
+        if (sheepDropped == sheepDroppedBeforeGameOver) 
         {
             GameOver();
         }

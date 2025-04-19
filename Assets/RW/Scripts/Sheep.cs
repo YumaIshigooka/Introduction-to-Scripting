@@ -14,6 +14,7 @@ public class Sheep : MonoBehaviour
     private AudioSource audioSource;
     private MeshRenderer sheepRenderer;
     public AudioClip[] audioClips;
+    public GameObject heartPrefab;
 
 
     public Summoner sheepSpawner;
@@ -67,6 +68,7 @@ public class Sheep : MonoBehaviour
             GameState.Instance.DroppedSheep();
         }
         if (other.CompareTag("Hay") && !isHit){
+            Instantiate(heartPrefab, transform.position, heartPrefab.transform.rotation);
             Destroy(other.gameObject);
             isHit = true;
             Destroy(gameObject, eatDelay);
@@ -77,7 +79,6 @@ public class Sheep : MonoBehaviour
             if (sheepRenderer.material.color != UnityEngine.Color.yellow) {
                 sheepRenderer.material.SetColor("_Color", UnityEngine.Color.white);
             }
-            
         }
     }
 }

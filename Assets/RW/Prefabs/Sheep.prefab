@@ -4902,6 +4902,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cafe9549d8af29f4fac83e05062bcf93, type: 3}
   - {fileID: 8300000, guid: a2433c54a97481344a7b88086c5a4ab6, type: 3}
   - {fileID: 8300000, guid: aae485c01398d884685bd4af52cea859, type: 3}
+  heartPrefab: {fileID: 2085450206, guid: 8fba4a47b4c0ec34ea1708e1aefb10b6, type: 3}
   sheepSpawner: {fileID: 0}
 --- !u!82 &-3006391907915050704
 AudioSource:
