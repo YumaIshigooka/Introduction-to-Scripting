@@ -84,6 +84,8 @@ public class Sheep : MonoBehaviour
             GameState.Instance.SavedSheep();
             if (sheepRenderer.material.color != UnityEngine.Color.yellow) {
                 sheepRenderer.material.SetColor("_Color", UnityEngine.Color.white);
+            } else {
+                GameState.Instance.SavedSheep();GameState.Instance.SavedSheep();
             }
         }
     }
