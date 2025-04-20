@@ -2,11 +2,13 @@
 # Introduction to Scripting: Sheep Rescue
 Tutorial followed for the Interactive Systems course.
 
+The Golden Sheeps do not fall and do not count towards the fallen sheep when reaching the edge: This is intentional. They are special. They are Golden Sheep.
+
 > [!NOTE]  
 > Unity Version: **2020.2.4f1**
 
 ## Download:
-Go to the [releases](https://github.com/YumaIshigooka/Unity-Roll-A-Ball/releases) page and download the latest version available for the game
+Go to the [releases](https://github.com/YumaIshigooka/Introduction-to-Scripting/releases) page and download the latest version available for the game
 
 ## Assets:
 ### SFX:
