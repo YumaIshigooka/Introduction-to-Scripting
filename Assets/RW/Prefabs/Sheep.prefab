@@ -4909,6 +4909,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8331b454d98c5b449beb72ba00668476, type: 3}
   - {fileID: 8300000, guid: 338e9b3e7e234d6448ca6a3b374fc229, type: 3}
   - {fileID: 8300000, guid: 5a7e02fb53a9b7343ae597537ec376b3, type: 3}
+  golden: {fileID: 8300000, guid: 50da95713135cf843b2c18dfc9c3969d, type: 3}
   heartPrefab: {fileID: 2085450206, guid: 8fba4a47b4c0ec34ea1708e1aefb10b6, type: 3}
   sheepSpawner: {fileID: 0}
 --- !u!82 &-3006391907915050704

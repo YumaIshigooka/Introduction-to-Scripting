@@ -16,6 +16,7 @@ public class Sheep : MonoBehaviour
     private MeshRenderer sheepRenderer;
     public AudioClip[] audioClips;
     public AudioClip[] screams;
+    public AudioClip golden;
     public GameObject heartPrefab;
 
 
@@ -78,13 +79,15 @@ public class Sheep : MonoBehaviour
             Destroy(other.gameObject);
             isHit = true;
             Destroy(gameObject, eatDelay);
+            sheepSpawner.RemoveSheepFromList (gameObject);
             audioSource.pitch = Random.Range(0.7f, 1f);
             audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
-            sheepSpawner.RemoveSheepFromList (gameObject);
             GameState.Instance.SavedSheep();
             if (sheepRenderer.material.color != UnityEngine.Color.yellow) {
                 sheepRenderer.material.SetColor("_Color", UnityEngine.Color.white);
             } else {
+                audioSource.pitch = 1f;
+                audioSource.PlayOneShot(golden);
                 GameState.Instance.SavedSheep();GameState.Instance.SavedSheep();
             }
         }

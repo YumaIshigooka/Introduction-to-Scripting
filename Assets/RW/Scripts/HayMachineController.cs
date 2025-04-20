@@ -11,12 +11,15 @@ public class HayMachineController : MonoBehaviour
     public float friction = 10;
     public float limitX = 22;
     public float hayBaleCooldown = 1;
+    private AudioSource audioSource;
+    public AudioClip shootSound;
     private float hayBaleTimer;
     public GameObject spawnPos;
     public GameObject hayBale;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         movementSpeed = 0;
         hayBaleTimer = hayBaleCooldown;
     }
@@ -42,9 +45,11 @@ public class HayMachineController : MonoBehaviour
         transform.position = position;
 
 
-        if(Input.GetKeyDown(KeyCode.Q) && hayBaleTimer > hayBaleCooldown){
+        if((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.Space)) && hayBaleTimer > hayBaleCooldown){
             Instantiate(hayBale, spawnPos.transform.position, Quaternion.identity);
             hayBaleTimer = 0;
+            audioSource.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+            audioSource.PlayOneShot(shootSound);
         }
     }
 }

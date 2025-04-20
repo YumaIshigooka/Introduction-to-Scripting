@@ -7,9 +7,11 @@ public class HayBale : MonoBehaviour
     private Rigidbody rb;
     private Translate translate;
     private bool slowdown = false;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         translate = GetComponent<Translate>();
     }
@@ -27,6 +29,8 @@ public class HayBale : MonoBehaviour
         if (other.CompareTag("River")){
             rb.isKinematic = false;
             slowdown = true;
+            audioSource.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+            audioSource.Play();
         }
     }
 }
