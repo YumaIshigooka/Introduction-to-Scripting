@@ -18,7 +18,9 @@ public class GameState : MonoBehaviour
     public Summoner sheepSpawner;
 
     public TextMeshProUGUI  sheepSavedText; // 2
-    public TextMeshProUGUI  sheepDroppedText; // 3
+    public TextMeshProUGUI  sheepDroppedText;
+
+    public GameObject gameOverPanel; 
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,9 +33,10 @@ public class GameState : MonoBehaviour
         sheepDropped = 0; 
 
         sheepSavedText.text = "Saved: " + sheepSaved;
-        sheepDroppedText.text = "Dropped: " + sheepDropped; 
+        sheepDroppedText.text = "Dropped: " + sheepDropped + " / " + sheepDroppedBeforeGameOver; 
 
         sheepSpawner.canSpawn = true; 
+        gameOverPanel.SetActive(false); 
     }
 
     // Update is called once per frame
@@ -57,19 +60,25 @@ public class GameState : MonoBehaviour
         sheepSpawner.DestroyAllSheep(); // 2
         Music.Instance.audioSource.Stop();
         Music.Instance.audioSource.PlayOneShot(Music.Instance.media[1]);
+        gameOverPanel.SetActive(true); 
     }
 
-    private void RestartGame()
+    public void QuitGame()
+    {
+        SceneManager.LoadScene("Title"); 
+    }
+    public void RestartGame()
     {
         sheepSpawner.canSpawn = true;
         sheepSpawner.DestroyAllSheep();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+        gameOverPanel.SetActive(false); 
 
         sheepSaved = 0; 
         sheepDropped = 0; 
 
         sheepDroppedText.text = "Saved: " + sheepDropped; 
-        sheepDroppedText.text = "Dropped: " + sheepDropped; 
+        sheepDroppedText.text = "Dropped: " + sheepDropped + " / " + sheepDroppedBeforeGameOver; 
 
         Music.Instance.audioSource.Stop();
         Music.Instance.audioSource.Play();
@@ -78,7 +87,7 @@ public class GameState : MonoBehaviour
     public void DroppedSheep()
     {
         sheepDropped++; 
-        sheepDroppedText.text = "Dropped: " + sheepDropped; 
+        sheepDroppedText.text = "Dropped: " + sheepDropped + " / " + sheepDroppedBeforeGameOver; 
 
         if (sheepDropped == sheepDroppedBeforeGameOver) 
         {

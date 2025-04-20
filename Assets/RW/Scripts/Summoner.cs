@@ -58,7 +58,7 @@ public class Summoner : MonoBehaviour
     private IEnumerator SpawnRoutine() {
         while (canSpawn) {
             spawnSheep(); 
-            timeBetweenSpawns *= 0.99f;
+            timeBetweenSpawns *= 0.98f;
             timeBetweenSpawns = Mathf.Clamp(timeBetweenSpawns, 0.5f, originalTimeBetweenSpawns); 
             yield return new WaitForSeconds(Random.Range(timeBetweenSpawns, timeBetweenSpawns * 2f));
         }
