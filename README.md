@@ -21,6 +21,8 @@ Go to the [releases](https://github.com/YumaIshigooka/Introduction-to-Scripting/
 * https://freesound.org/people/thanvannispen/sounds/9425/
 * https://freesound.org/people/Fupicat/sounds/538147/
 * https://youtu.be/B9nnM8X4hEM
+* https://freesound.org/people/PappaBert/sounds/402607/
+* https://freesound.org/people/Department64/sounds/607808/
 
 # Music
 Music from Kevin MacLeod
