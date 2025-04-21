@@ -7,6 +7,11 @@ The Golden Sheeps do not fall and do not count towards the fallen sheep when rea
 > [!NOTE]  
 > Unity Version: **2020.2.4f1**
 
+## Controls
+* Press `Q` or `Space` to shoot
+* Press the Arrow Keys (Left, Right) to move
+
+
 ## Download:
 Go to the [releases](https://github.com/YumaIshigooka/Introduction-to-Scripting/releases) page and download the latest version available for the game
 
